@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MuyPicky</title>
+
+    {% include 'snippets/css.html' %}
+</head>
+<body>
+
+<div class="container">
+    <h1>Welcome!</h1>
+
+    {% include 'snippets/nav.html' %}
+
+    {% block content %}
+
+    {% endblock %}
+</div>
+
+
+{% include 'snippets/js.html' %}
+</body>
+</html>
