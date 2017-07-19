@@ -4,6 +4,8 @@
 
     <h1>Home Page!</h1>
 
-    <p>Hello {{ name }}!</p>
+    {% for obj in object_list %}
+        {{ obj }} - {{ obj.location }} - {{ obj.category }} <br>
+    {% endfor %}
 
 {% endblock %}

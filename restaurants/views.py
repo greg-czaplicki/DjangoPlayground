@@ -1,13 +1,24 @@
-from django.views.generic import TemplateView
+from django.db.models import Q
+from django.views.generic import TemplateView, ListView
+
+from .models import RestaurantLocation
 
 
 # Create your views here.
 class HomeView(TemplateView):
     template_name = 'home.html'
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(HomeView, self).get_context_data(*args, **kwargs)
-        context = {
-            'name': 'Greg'
-        }
-        return context
+
+class RestaurantListView(ListView):
+    template_name = 'home.html'
+
+    def get_queryset(self):
+        slug = self.kwargs.get("slug")
+        if slug:
+            queryset = RestaurantLocation.objects.filter(
+                Q(category__iexact=slug) or
+                Q(category__icontains=slug)
+            )
+        else:
+            queryset = RestaurantLocation.objects.all()
+        return queryset
