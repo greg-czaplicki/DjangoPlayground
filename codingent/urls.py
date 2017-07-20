@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.views.generic import TemplateView
 
-from restaurants.views import HomeView, RestaurantListView
+from restaurants.views import HomeView, RestaurantListView, RestaurantDetailView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^about', TemplateView.as_view(template_name='about.html')),
     url(r'^contact', TemplateView.as_view(template_name='contact.html')),
     url(r'^restaurants/$', RestaurantListView.as_view()),
-    url(r'^restaurants/(?P<slug>\w+)/$', RestaurantListView.as_view()),
+    # url(r'^restaurants/(?P<slug>\w+)/$', RestaurantListView.as_view()),
+    url(r'^restaurants/(?P<pk>\d+)/$', RestaurantDetailView.as_view()),
 ]

@@ -1,5 +1,5 @@
 from django.db.models import Q
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 
 from .models import RestaurantLocation
 
@@ -10,10 +10,9 @@ class HomeView(TemplateView):
 
 
 class RestaurantListView(ListView):
-    template_name = 'home.html'
-
     def get_queryset(self):
         slug = self.kwargs.get("slug")
+        print(slug)
         if slug:
             queryset = RestaurantLocation.objects.filter(
                 Q(category__iexact=slug) or
@@ -22,3 +21,11 @@ class RestaurantListView(ListView):
         else:
             queryset = RestaurantLocation.objects.all()
         return queryset
+
+
+class RestaurantDetailView(DetailView):
+    queryset = RestaurantLocation.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(RestaurantDetailView, self).get_context_data(**kwargs)
+        return context
