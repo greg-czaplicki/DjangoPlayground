@@ -5,7 +5,7 @@
     <h1>Home Page!</h1>
 
     {% for obj in object_list %}
-        {{ obj }} - {{ obj.location }} - {{ obj.category }} <br>
+        <a href="/restaurants/{{ obj.slug }}/">{{ obj }}</a> - {{ obj.location }} - {{ obj.category }} <br>
     {% endfor %}
 
 {% endblock %}
